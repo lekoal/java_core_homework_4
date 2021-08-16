@@ -2,9 +2,10 @@ package ru.geekbrains.homework_4;
 
 import java.util.Random;
 import java.util.Scanner;
+
 public class Main {
     public static char[][] chArr;
-    public static final int fSize = 3; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
+    public static final int fSize = 5; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
     public static final char xChar = 'X';
     public static final char oChar = 'O';
     public static final char emChar = '♦';
@@ -62,7 +63,8 @@ public class Main {
     }
 
     public static boolean chEmpty(int x, int y) { // Метод проверки на доступность координат поля для ввода
-        if (x < 0 || x >= fSize || y < 0 || y >= fSize) return false; // Координаты не могут выходить за пределы размеров поля
+        if (x < 0 || x >= fSize || y < 0 || y >= fSize)
+            return false; // Координаты не могут выходить за пределы размеров поля
         return chArr[x][y] == emChar; // Наличие "пустого" символа по заданным координатам
     }
 
@@ -73,7 +75,7 @@ public class Main {
             System.out.println("Сделайте ход в формате X Y");
             x = sc.nextInt() - 1;
             y = sc.nextInt() - 1;
-        } while(!chEmpty(x, y)); // Проверка на доступность координат
+        } while (!chEmpty(x, y)); // Проверка на доступность координат
         chArr[x][y] = xChar;
     }
 
