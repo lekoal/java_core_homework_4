@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static char[][] chArr;
-    public static final int fSize = 5; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
+    public static final int fSize = 8; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
     public static final char xChar = 'X';
     public static final char oChar = 'O';
     public static final char emChar = '♦';
@@ -167,9 +167,9 @@ public class Main {
                         chArr[i - 1][i - 1] = oChar; // Блокировка продолжения линии символов перед обнаруженными
                         return true;
                     }
-                } else if (chArr[i][fSize - 1 - i] == xChar && chArr[i + 1][fSize - i - 2] == xChar) { // Проверка побочной диагонали на наличие от двух символов подряд и вставка нуля после или перед символами
-                    if (chEmpty(i + 2, fSize - i - 3)) {
-                        chArr[i + 2][fSize - i - 3] = oChar; // Блокировка продолжения линии символов после обнаруженных
+                } else if (chArr[i][fSize - (i + 1)] == xChar && chArr[i + 1][fSize - (i + 2)] == xChar) { // Проверка побочной диагонали на наличие от двух символов подряд и вставка нуля после или перед символами
+                    if (chEmpty(i + 2, fSize - (i + 3))) {
+                        chArr[i + 2][fSize - (i + 3)] = oChar; // Блокировка продолжения линии символов после обнаруженных
                         return true;
                     } else if (chEmpty(i - 1, fSize - i)) {
                         chArr[i - 1][fSize - i] = oChar; // Блокировка продолжения линии символов перед обнаруженными
