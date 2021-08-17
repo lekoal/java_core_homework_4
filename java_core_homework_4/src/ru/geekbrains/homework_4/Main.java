@@ -115,14 +115,14 @@ public class Main {
         } else {
             fiveDet = fSize;
         }
-        for (int i = 0; i < fiveDet; i++) {
+        for (int i = 0; i < fSize; i++) {
             chCount2 = 0;
             chCount3 = 0;
-            if (chArr[i][fiveDet - i - 1] == chMove) { // Проверка побочной диагонали на заполненность символами
+            if (chArr[i][fSize - i - 1] == chMove) { // Проверка побочной диагонали на заполненность символами
                 chCount1++;
                 if (chCount1 == fiveDet) return true;
             }
-            for (int j = 0; j < fiveDet; j++) {
+            for (int j = 0; j < fSize; j++) {
                 if (chArr[i][j] == chMove) { // Проверка строк на заполненность символами
                     chCount2++;
                     if (chCount2 == fiveDet) return true;
