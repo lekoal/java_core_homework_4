@@ -87,7 +87,7 @@ public class Main {
             chArr[fSize / 2][fSize / 2] = oChar;
         } else if (aiCheck()) { // Проверка на выполняемость условий поведения ai и вызов метода ai на исполнение
         } else if (!aiCheck()) { // Если условия поведения ai не выполняются, символ ставится в случайное место поля
-            r = rand.nextInt(2);
+            r = rand.nextInt(3);
             switch (r) { // Ставить нолики в конечные ячейки поля, так как цикл for не охватывает конечные столбцы и строки
                 case 0:
                     x = fSize - 1;
@@ -100,6 +100,13 @@ public class Main {
                     y = fSize - 1;
                     do {
                         x = rand.nextInt(fSize);
+                    } while (!chEmpty(x, y));  // Проверка на доступность координат
+                    chArr[x][y] = oChar;
+                    break;
+                case 2:
+                    do {
+                        x = rand.nextInt(fSize);
+                        y = rand.nextInt(fSize);
                     } while (!chEmpty(x, y));  // Проверка на доступность координат
                     chArr[x][y] = oChar;
                     break;
