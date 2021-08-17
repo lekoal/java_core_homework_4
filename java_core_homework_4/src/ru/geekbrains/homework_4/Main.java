@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static char[][] chArr;
-    public static final int fSize = 8; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
+    public static final int fSize = 6; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
     public static final char xChar = 'X';
     public static final char oChar = 'O';
     public static final char emChar = '♦';
@@ -80,18 +80,32 @@ public class Main {
     }
 
     public static void aiMove() { // Метод хода компьютера
-        int x, y;
+        int x, y, r;
         System.out.println();
         System.out.println("Ход компьютера");
         if (fSize % 2 != 0 && chEmpty(fSize / 2, fSize / 2)) { // Если размеры поля не делятся без остатка на 2 и центр поля свободен, поставить туда ноль
             chArr[fSize / 2][fSize / 2] = oChar;
         } else if (aiCheck()) { // Проверка на выполняемость условий поведения ai и вызов метода ai на исполнение
         } else if (!aiCheck()) { // Если условия поведения ai не выполняются, символ ставится в случайное место поля
-            do {
-                x = rand.nextInt(fSize);
-                y = rand.nextInt(fSize);
-            } while (!chEmpty(x, y)); // Проверка на доступность координат
-            chArr[x][y] = oChar;
+            r = rand.nextInt(2);
+            switch (r) { // Ставить нолики в конечные ячейки поля, так как цикл for не охватывает конечные столбцы и строки
+                case 0:
+                    x = fSize - 1;
+                    do {
+                        y = rand.nextInt(fSize);
+                    } while (!chEmpty(x, y));  // Проверка на доступность координат
+                    chArr[x][y] = oChar;
+                    break;
+                case 1:
+                    y = fSize - 1;
+                    do {
+                        x = rand.nextInt(fSize);
+                    } while (!chEmpty(x, y));  // Проверка на доступность координат
+                    chArr[x][y] = oChar;
+                    break;
+            }
+
+
         }
     }
 
