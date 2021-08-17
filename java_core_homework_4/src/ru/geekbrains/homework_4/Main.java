@@ -85,8 +85,7 @@ public class Main {
         System.out.println("Ход компьютера");
         if (fSize % 2 != 0 && chEmpty(fSize / 2, fSize / 2)) { // Если размеры поля не делятся без остатка на 2 и центр поля свободен, поставить туда ноль
             chArr[fSize / 2][fSize / 2] = oChar;
-        } else if (aiCheck()) { // Проверка на выполняемость условий поведения ai
-            aiCheck(); // Вызов метода ai на выполнение
+        } else if (aiCheck()) { // Проверка на выполняемость условий поведения ai и вызов метода ai на исполнение
         } else if (!aiCheck()) { // Если условия поведения ai не выполняются, символ ставится в случайное место поля
             do {
                 x = rand.nextInt(fSize);
@@ -110,25 +109,31 @@ public class Main {
         int chCount2;
         int chCount3;
         int chCount4 = 0;
-        for (int i = 0; i < fSize; i++) {
+        int fiveDet; // Переменная для хранения значения 4 клеток подряд при размере поля 5х5
+        if (fSize == 5) { // Для поля 5х5 выигрышной будет комбинация из четырёх символов
+            fiveDet = 4;
+        } else {
+            fiveDet = fSize;
+        }
+        for (int i = 0; i < fiveDet; i++) {
             chCount2 = 0;
             chCount3 = 0;
-            if (chArr[i][fSize - i - 1] == chMove) { // Проверка побочной диагонали на заполненность символами
+            if (chArr[i][fiveDet - i - 1] == chMove) { // Проверка побочной диагонали на заполненность символами
                 chCount1++;
-                if (chCount1 == fSize) return true;
+                if (chCount1 == fiveDet) return true;
             }
-            for (int j = 0; j < fSize; j++) {
+            for (int j = 0; j < fiveDet; j++) {
                 if (chArr[i][j] == chMove) { // Проверка строк на заполненность символами
                     chCount2++;
-                    if (chCount2 == fSize) return true;
+                    if (chCount2 == fiveDet) return true;
                 }
                 if (chArr[j][i] == chMove) { // Проверка столбцов на заполненность символами
                     chCount3++;
-                    if (chCount3 == fSize) return true;
+                    if (chCount3 == fiveDet) return true;
                 }
                 if (chArr[i][j] == chMove && i == j) { // Проверка главной диагонали на заполненность символами
                     chCount4++;
-                    if (chCount4 == fSize) return true;
+                    if (chCount4 == fiveDet) return true;
                 }
             }
         }
