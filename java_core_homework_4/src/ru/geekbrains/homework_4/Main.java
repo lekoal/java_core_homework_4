@@ -25,7 +25,7 @@ public class Main {
                 System.out.println("Ничья!");
                 break;
             }
-//            aiMove(); // Ход компьютера
+            aiMove(); // Ход компьютера
             printArr(); // Вывод игрового поля в консоль
             if (whoWin(oChar)) { // Проверка на заполненность ноликами
                 System.out.println("Компьютер победил!");
