@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static char[][] chArr;
-    public static final int fSize = 6; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
+    public static final int fSize = 5; // Размер игрового поля, код игры предполагает использование широкого диапазона размеров полей
     public static final char xChar = 'X';
     public static final char oChar = 'O';
     public static final char emChar = '♦';
@@ -25,7 +25,7 @@ public class Main {
                 System.out.println("Ничья!");
                 break;
             }
-            aiMove(); // Ход компьютера
+//            aiMove(); // Ход компьютера
             printArr(); // Вывод игрового поля в консоль
             if (whoWin(oChar)) { // Проверка на заполненность ноликами
                 System.out.println("Компьютер победил!");
@@ -141,21 +141,30 @@ public class Main {
             chCount3 = 0;
             if (chArr[i][fSize - i - 1] == chMove) { // Проверка побочной диагонали на заполненность символами
                 chCount1++;
-                if (chCount1 == fiveDet) return true;
+            } else {
+                chCount1 = 0; // Обнуление счётчика для выигрышных чисел, меньших fSize (например, для поля 5х5)
             }
+            if (chCount1 == fiveDet) return true;
+
             for (int j = 0; j < fSize; j++) {
                 if (chArr[i][j] == chMove) { // Проверка строк на заполненность символами
                     chCount2++;
-                    if (chCount2 == fiveDet) return true;
+                } else {
+                    chCount2 = 0;
                 }
+                if (chCount2 == fiveDet) return true;
                 if (chArr[j][i] == chMove) { // Проверка столбцов на заполненность символами
                     chCount3++;
-                    if (chCount3 == fiveDet) return true;
+                } else {
+                    chCount3 = 0;
                 }
+                if (chCount3 == fiveDet) return true;
                 if (chArr[i][j] == chMove && i == j) { // Проверка главной диагонали на заполненность символами
                     chCount4++;
-                    if (chCount4 == fiveDet) return true;
+                } else {
+                    chCount4 = 0;
                 }
+                if (chCount4 == fiveDet) return true;
             }
         }
         return false;
